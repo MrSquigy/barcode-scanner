@@ -22,7 +22,7 @@
 
 			?>
 			<table width="500px">
-			<tr><td><h1><?php echo $item['name']; ?></h1></td></tr>
+			<tr><td><h2><?php echo $item['name']; ?></h2>ID: <?php echo $item['id']; ?></td></tr>
 			<tr><td><?php echo $item['description']; ?></td></tr>
 			<tr><td align="right">$<?php echo $item['price']; ?></td></tr>
 			</table>
