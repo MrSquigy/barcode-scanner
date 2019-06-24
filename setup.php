@@ -10,8 +10,6 @@ require_once('classes/DatabaseHelper.php');
 $create_db = "CREATE DATABASE IF NOT EXISTS " . DATABASE_NAME;
 $delete_db = "DROP DATABASE IF EXISTS " . DATABASE_NAME;
 $create_items_table = "CREATE TABLE IF NOT EXISTS " . ITEMS_TABLE_NAME . " (id INT(6) AUTO_INCREMENT PRIMARY KEY, name VARCHAR(30) NOT NULL, description TEXT NOT NULL, price FLOAT(7, 2) NOT NULL DEFAULT 0, stock_count INT NOT NULL DEFAULT 0)";
-$insert_keyboard =  $insertConf = "INSERT INTO " . ITEMS_TABLE_NAME . " (name, description, price, stock_count) VALUES ('Keyboard', 'Basic Keyboard', '15', '10')";
-$insert_mouse =  $insertConf = "INSERT INTO " . ITEMS_TABLE_NAME . " (name, description, price, stock_count) VALUES ('Mouse', 'Basic Mouse', '20', '10')";
 
 echo "<a href='index.html'>< Home</a>"; // Backlink
 
@@ -28,10 +26,6 @@ $helper = new DatabaseHelper(); // Create new helper with connection
 // Create items table
 $run = $helper->run_query($create_items_table);
 if ($run === FALSE) die("Failed to create the items table: " . $helper->get_last_error());
-
-// Add test data
-$run = $helper->run_query($insert_keyboard);
-$run = $helper->run_query($insert_mouse);
 
 echo "\n\nDatabase installation successful";
 ?>
