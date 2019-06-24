@@ -4,20 +4,37 @@
 		<title>Add item</title>
 	</head>
 	<body>
+		<a href="index.html">< Home</a><br />
+		<h2>Add item</h2>
 		<?php
+		require_once('classes/DatabaseHelper.php');
 
-		if (isset($_GET['name']) && trim($_GET['name']) != '') {
-			$name = $_GET['name'];
-			echo $name;
+		function add_item($helper, $name, $description, $price, $stock) {
+			$add_item = "INSERT INTO " . ITEMS_TABLE_NAME . " (name, description, price, stock_count) VALUES ('$name', '$description', '$price', '$stock')";
+
+			$run = $helper->run_query($add_item);
+			if ($run === FALSE) die("Failed to add item: " . $helper->get_last_error());
+			echo "<a href='lookup.php?id=" . $helper->get_last_id() . "'>Successfully added item (ID: " . $helper->get_last_id() . ")</a>";
+		}
+
+		if (isset($_POST['name']) && trim($_POST['name']) != '') {
+			$helper = new DatabaseHelper();
+			
+			$name = $helper->escape(trim($_POST['name']));
+			$description = $helper->escape(trim($_POST['description']));
+			$price = $helper->escape($_POST['price']);
+			$stock_amount = $helper->escape($_POST['stock']);
+
+			add_item($helper, $name, $description, $price, $stock_amount);
 		} else {
 			?>
 
-			<form action="add.php" method="get">
+			<form action="add.php" method="post">
 				<table>
 					<tr><td><input type="text" name="name" placeholder="Item Name"></td></tr>
 					<tr><td><textarea name="description" cols="40" rows="5" placeholder="Item Description"></textarea></td></tr>
-					<tr><td><input type="number" min="0" max="99999.99" step="any" placeholder="Item Price"></td></tr>
-					<tr><td><input type="number" min="1" max="9999" step="1" placeholder="Stock Amount"></td></tr>
+					<tr><td><input type="number" name="price" min="0" max="99999.99" step="any" placeholder="Item Price"></td></tr>
+					<tr><td><input type="number" name="stock" min="1" step="1" placeholder="Stock Amount"></td></tr>
 					<tr><td><input type="submit" value="Add"></td></tr>
 				<table>
 			</form>
