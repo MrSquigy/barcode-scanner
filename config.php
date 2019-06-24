@@ -12,4 +12,6 @@
 	/* MySQL table names */
 	define('ITEMS_TABLE_NAME', 'items');
 
+	/* File stuff */
+	define('SEPARATOR_STRING', '~,');
 ?>
