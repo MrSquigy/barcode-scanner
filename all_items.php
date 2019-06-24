@@ -7,12 +7,13 @@
 	<body>
 		<a href='index.html'>< Home</a><br />
 		<h2>All Items</h2>
-		<table width="800px">
+		<table width="1000px">
 			<tr>
 				<td>Item Name</td>
 				<td width="70%">Item Description</td>
 				<td>Item Price</td>
 				<td>Edit Link</td>
+				<td>Delete Link</td>
 			</tr>
 
 			<?php
@@ -31,6 +32,7 @@
 				echo "<td>$item[description]</td>";
 				echo "<td>$$item[price]</td>";
 				echo "<td><a href='edit.php?id=$item[id]'>Edit Item</a></td>";
+				echo "<td><a href='delete.php?id=$item[id]'>Delete Item</a></td>";
 				echo "</tr>";
 			}
 			?>
