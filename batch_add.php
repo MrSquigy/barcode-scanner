@@ -12,8 +12,14 @@
 		require_once('common.php');
 
 		if (isset($_POST['items'])) {
-			//if (isset($_POST['items_file']) $items = explode('\n', $_POST['items_file']);
-			$items = preg_split('/\r\n|[\r\n]/', $_POST['items']); // Split the lines
+
+			// Handle if a file was uploaded
+			if (isset($_FILES['items_file'])) {
+				$file_name = $_FILES['items_file']['tmp_name'];
+				if ($_FILES['items_file']['error'] == UPLOAD_ERR_OK && is_uploaded_file($file_name)) $items = file_get_contents($file_name);
+			} else $items = $_POST['items'];
+
+			$items = preg_split('/\r\n|[\r\n]/', $items); // Split the lines
 
 			for ($i = 0; $i < count($items); $i++) $items[$i] = explode(SEPARATOR_STRING, $items[$i]);
 
@@ -35,7 +41,7 @@
 
 		?>
 
-		<form action="batch_add.php" method="post">
+		<form enctype="multipart/form-data" action="batch_add.php" method="post">
 			<p>You can upload a file or you can type/paste in below.<br /><br />
 			The format is Name<?php echo SEPARATOR_STRING; ?>Description<?php echo SEPARATOR_STRING; ?>Price<?php echo SEPARATOR_STRING; ?>Stock<br />
 			The separator is <?php echo SEPARATOR_STRING; ?> (You can modify the separator in config.php)</p>
