@@ -8,20 +8,20 @@
 include_once('../config.php');
 
 class DatabaseHelper {
-	/* Connection to database */
+	/*	Connection to database */
 	private $conn;
 
-	/* Constructor */
+	/*	Constructor */
 	function __construct($connect_db = true) {
 		$this->make_conn($connect_db);
 	}
 
-	/* Destructor */
+	/*	Destructor */
 	function __destruct() {
 		$this->close_conn();
 	}
 
-	/* Creates a connection to the database */
+	/*	Creates a connection to the database */
 	public function make_conn($connect_db = true) {
 		// Try make a connection
 		$this->conn = new mysqli(MYSQL_HOST, MYSQL_USERNAME, MYSQL_PASSWORD);
@@ -37,7 +37,18 @@ class DatabaseHelper {
 		}
 	}
 
-	/* Closes database connection */
+	/*	Runs a SQL query on the database 
+	*	Precondition:	conn is a connection
+	*	sql:			MySQL Query to execute
+	*	Return val:		FALSE on failure, TRUE otherwise, or mysqli_result object
+	*/
+	public function run_query($sql) {
+		$ret = $this->conn->query($sql);
+		
+		return $ret;
+	}
+
+	/*	Closes database connection */
 	public function close_conn() {
 		$this->conn->close();
 	}
