@@ -53,9 +53,22 @@ class DatabaseHelper {
 		$this->conn->close();
 	}
 
-	/* Returns last error */
+	/*	Returns last error */
 	public function get_last_error() {
 		return $this->conn->error;
+	}
+
+	/*	Escapes input */
+	public function escape($string) {
+		return mysqli_real_escape_string($this->conn, $string);
+	}
+
+	/*	Returns the id of the last inserted item.
+	*	Precondition: The last action completed on the helper class was adding an item
+					  to the database.
+	*/
+	public function get_last_id() {
+		return $this->conn->insert_id;
 	}
 }
 
