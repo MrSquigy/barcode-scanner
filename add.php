@@ -7,7 +7,7 @@
 		<a href="index.html">< Home</a><br />
 		<h2>Add item</h2>
 		<?php
-		require_once('classes/DatabaseHelper.php');
+		require_once('common.php');
 
 		if (isset($_POST['name']) && trim($_POST['name']) != '') {
 			$helper = new DatabaseHelper();
@@ -17,7 +17,7 @@
 			$price = $helper->escape($_POST['price']);
 			$stock_amount = $helper->escape($_POST['stock']);
 
-			$add = add_item($helper, $name, $description, $price, $stock_amount);
+			$add = add_item($name, $description, $price, $stock_amount);
 			if (strpos($add, 'Fail') !== false) echo $add;
 			else die($add);
 		} else {
