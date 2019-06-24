@@ -4,7 +4,7 @@
 		<title>Lookup item</title>
 	</head>
 	<body>
-		<a href="index.html"><- Home</a><br /><br />
+		<a href="index.html">< Home</a><br /><br />
 		<form action="lookup.php" method="get">
 			<input type="text" name="id" placeholder="Item ID" autofocus>
 			<input type="submit" value="Lookup">

@@ -13,6 +13,8 @@ $create_items_table = "CREATE TABLE IF NOT EXISTS " . ITEMS_TABLE_NAME . " (id I
 $insert_keyboard =  $insertConf = "INSERT INTO " . ITEMS_TABLE_NAME . " (name, description, price, stock_count) VALUES ('Keyboard', 'Basic Keyboard', '15', '10')";
 $insert_mouse =  $insertConf = "INSERT INTO " . ITEMS_TABLE_NAME . " (name, description, price, stock_count) VALUES ('Mouse', 'Basic Mouse', '20', '10')";
 
+echo "<a href='index.html'>< Home</a>"; // Backlink
+
 $helper = new DatabaseHelper(false); // Create bare connection
 
 if (isset($_GET['reinstall'])) $run = $helper->run_query($delete_db); // Reinstall
