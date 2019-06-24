@@ -5,7 +5,7 @@
 *	database to make sure it is always safe, and also easily maintainable.
 */
 
-include_once('../config.php');
+require_once(__DIR__ . '\../config.php');
 
 class DatabaseHelper {
 	/*	Connection to database */
@@ -51,6 +51,11 @@ class DatabaseHelper {
 	/*	Closes database connection */
 	public function close_conn() {
 		$this->conn->close();
+	}
+
+	/* Returns last error */
+	public function get_last_error() {
+		return $this->conn->error;
 	}
 }
 
