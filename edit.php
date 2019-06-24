@@ -8,7 +8,6 @@
 		<a href='index.html'>< Home</a><br />
 		<h2>Edit an Item</h2>
 		<?php
-		require_once('classes/DatabaseHelper.php');
 		require_once('common.php');
 		
 		if (!isset($_GET['id'])) exit();

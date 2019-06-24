@@ -11,7 +11,6 @@
 		</form>
 
 		<?php
-		require_once('classes/DatabaseHelper.php');
 		require_once('common.php');
 
 		if (isset($_GET['id']) && trim($_GET['id']) != '') {
