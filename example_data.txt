@@ -1,0 +1,2 @@
+Keyboard~,Basic Keyboard~,15~,10
+Mouse~,Basic Mouse~,20~,10
