@@ -9,14 +9,6 @@
 		<?php
 		require_once('classes/DatabaseHelper.php');
 
-		function add_item($helper, $name, $description, $price, $stock) {
-			$add_item = "INSERT INTO " . ITEMS_TABLE_NAME . " (name, description, price, stock_count) VALUES ('$name', '$description', '$price', '$stock')";
-
-			$run = $helper->run_query($add_item);
-			if ($run === FALSE) die("Failed to add item: " . $helper->get_last_error());
-			echo "<a href='lookup.php?id=" . $helper->get_last_id() . "'>Successfully added item (ID: " . $helper->get_last_id() . ")</a>";
-		}
-
 		if (isset($_POST['name']) && trim($_POST['name']) != '') {
 			$helper = new DatabaseHelper();
 			
@@ -25,7 +17,9 @@
 			$price = $helper->escape($_POST['price']);
 			$stock_amount = $helper->escape($_POST['stock']);
 
-			add_item($helper, $name, $description, $price, $stock_amount);
+			$add = add_item($helper, $name, $description, $price, $stock_amount);
+			if (strpos($add, 'Fail') !== false) echo $add;
+			else die($add);
 		} else {
 			?>
 
