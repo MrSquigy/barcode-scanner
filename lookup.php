@@ -10,11 +10,10 @@
 			$id = $_GET['id'];
 			echo $id;
 		} else {
-			// Put html form in here
 			?>
 
 			<form action="lookup.php" method="get">
-				<input type="text" name="id" id="id" placeholder="Item ID">
+				<input type="text" name="id" placeholder="Item ID" autofocus>
 				<input type="submit" value="Lookup">
 			</form>
 
